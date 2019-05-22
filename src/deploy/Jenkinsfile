@@ -20,7 +20,7 @@ pipeline {
         }        
         stage('Transferindo dados para servidor') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Dsend.sh | sh'
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Dsend.sh | bash'
             }
         }
         stage('Removendo restos') {
