@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Instalando OpenSSH em Cloud') {
             steps {
-                sh 'ssh $USER_SERVER@$HOST_SERVER "bash -s" < '
+                sh 'ssh $USER_SERVER@$HOST_SERVER "bash -s" < curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Iossh.sh | bash'
             }
         }
         stage('Removendo pacotes antigos') {
