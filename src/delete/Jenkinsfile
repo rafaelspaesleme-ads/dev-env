@@ -1,26 +1,14 @@
 pipeline {
     agent any
-    stages {
-        stage('Baixando scripts') {
+    stages {  
+        stage('Deletando pasta DevOps') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletedatalast.sh | bash'
-            }
-        }
-        stage('Enviando scripts') {
-            steps {
-                timeout(time: 20, unit: 'SECONDS') {
-                    sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Generatekey.sh | bash'
-                }
-            }
-        }        
-        stage('Executando scripts remoto') {
-            steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Installenv.sh | bash'
+                sh 'ssh $USER_SERVER@$HOST_SERVER "bash -s" < https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletepipeline.sh'
             }
         }
         stage('Removendo restos') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletedatalast.sh | bash'
+                echo 'Dados excluidos com sucesso!'
             }
         }
     }   
