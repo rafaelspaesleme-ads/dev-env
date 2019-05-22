@@ -9,7 +9,7 @@ pipeline {
         stage('Gerando acesso via SCP/SSH') {
             steps {
                 timeout(time: 20, unit: 'SECONDS') {
-                    sh 'curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Gkey.sh | sh'
+                    sh 'curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Gkey.sh | bash'
                 }
             }
         }        
