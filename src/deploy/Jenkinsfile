@@ -15,7 +15,7 @@ pipeline {
         }        
         stage('Criando ambiente DevOps') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Ienv.sh | sh'
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/dev-env/raw/master/src/scripts/Ienv.sh | bash'
             }
         }        
         stage('Transferindo dados para servidor') {
