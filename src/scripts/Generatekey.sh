@@ -1,8 +1,13 @@
 #!/bin/bash
 
 # Gerando chave ssh
-cd ~/.ssh
+if [ -e "~/.ssh" ]
+   then
+      echo "pasta .ssh ja existe!"
+   else
+      mkdir /$JENKINS_HOME/.ssh
+fi
 
-ssh-keygen -t rsa -N "" -f $CREATE_PKEY
+ssh-keygen -t rsa -N "" -f /$JENKINS_HOME/.ssh/$CREATE_PKEY
 
-sshpass -p $PASSWORD_SERVER ssh-copy-id -i ~/.ssh/$CREATE_PKEY.pub $USER_SERVER@$HOST_SERVER
+sshpass -p $PASSWORD_SERVER ssh-copy-id -i /$JENKINS_HOME/.ssh/$CREATE_PKEY.pub $USER_SERVER@$HOST_SERVER
