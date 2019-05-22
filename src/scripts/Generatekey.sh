@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Gerando chave ssh
-if [ -e "~/.ssh" ]
+if [ -e "/$JENKINS_HOME/.ssh" ]
    then
       echo "pasta .ssh ja existe!"
    else
