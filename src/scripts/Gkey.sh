@@ -12,4 +12,4 @@ ssh-keygen -t rsa -N "" -f ~/.ssh/$CREATE_PKEY
 
 sshpass -p $PASSWORD_SERVER ssh-copy-id -i ~/.ssh/$CREATE_PKEY.pub $USER_SERVER@$HOST_SERVER
 
-ssh $USER_SERVER@$HOST_SERVER -i ~/.ssh/CREATE_PKEY.pub
+ssh $USER_SERVER@$HOST_SERVER
