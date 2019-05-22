@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages {
+        stage('Baixando scripts') {
+            steps {
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletedatalast.sh | bash'
+            }
+        }
+        stage('Enviando scripts') {
+            steps {
+                timeout(time: 20, unit: 'SECONDS') {
+                    sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Generatekey.sh | bash'
+                }
+            }
+        }        
+        stage('Executando scripts remoto') {
+            steps {
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Installenv.sh | bash'
+            }
+        }
+        stage('Removendo restos') {
+            steps {
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletedatalast.sh | bash'
+            }
+        }
+    }   
+    post {
+        always {
+            echo 'Executando retornos do job.'
+        }
+        success {
+            echo 'Ambiente criado com sucesso!'
+        }
+        failure {
+            echo 'Erro ao criar ambiente. Consulte o log da console.'
+        }
+        unstable {
+            echo 'Este build demonstra instabilidade'
+        }
+        changed {
+            echo 'Comandos alterados no pipeline... a verificar.'
+            echo 'Builder em falha recuperado com sucesso!'
+        }
+    }
+}
