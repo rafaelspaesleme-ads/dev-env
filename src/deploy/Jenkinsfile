@@ -3,29 +3,29 @@ pipeline {
     stages {
         stage('Removendo pacotes antigos') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletedatalast.sh | sh'
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deldlast.sh | sh'
             }
         }
         stage('Gerando acesso via SCP/SSH') {
             steps {
                 timeout(time: 20, unit: 'SECONDS') {
-                    sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Generatekey.sh | sh'
+                    sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Gkey.sh | sh'
                 }
             }
         }        
         stage('Criando ambiente DevOps') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Installenv.sh | sh'
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Ienv.sh | sh'
             }
         }        
         stage('Transferindo dados para servidor') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Datasend.sh | sh'
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Dsend.sh | sh'
             }
         }
         stage('Removendo restos') {
             steps {
-                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Deletedatalast.sh | sh'
+                sh 'curl -sSL https://github.com/rafaelspaesleme-ads/developer-env/raw/master/src/scripts/Delpipeline.sh | sh'
             }
         }
     }   
